@@ -5,9 +5,9 @@ import { InsertLevels } from "./insert/insertLevels";
 
 const seed = async () => {
   try {
-   
+   await InsertN5GrammarExamples();
     await InsertN5Grammars();
-    await InsertN5GrammarExamples();
+    
     await InsertLevels();
     console.log("Đã chèn dữ liệu thành công");
   } catch (error) {

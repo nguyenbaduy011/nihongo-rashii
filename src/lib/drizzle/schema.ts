@@ -12,9 +12,9 @@ import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 export const blogs = pgTable("blogs", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  image: text("image").notNull(),
+  // image: text("image").notNull(),
   content: text("content").notNull(),
-  date: timestamp("date").defaultNow().notNull(),
+  date: timestamp("date").defaultNow(),
   // category: text("category").notNull(),
   // author: text("author").notNull().references(()=>users.name, {onDelete: "cascade"})
 });
@@ -45,6 +45,11 @@ export const grammarExamples = pgTable("grammarExamples", {
   romajiRead: text("romajiRead").notNull(),
 });
 
+export const grammarHomophone = pgTable("grammarHomophone", {
+
+})
+
+export const grammarSynophone = pgTable("grammarHomophone", {});
 //  export const categories = pgTable("categories", {
 //  });
 

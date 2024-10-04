@@ -1,9 +1,11 @@
 "use client";
 
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Plus } from "lucide-react";
 import { SideBar } from "./sideBar";
 import { useState } from "react";
 import Image from "next/image";
+import { ToggleCreateBlog } from "./blogs/toggleCreateBlog";
+
 export function Header() {
   const [openSideBar, setOpenSideBar] = useState(false);
 
@@ -32,6 +34,7 @@ export function Header() {
       </div>
       <div className="flex items-center space-x-16">
         <Search className="size-5" />
+        <ToggleCreateBlog />
         <Menu onClick={() => setOpenSideBar(!openSideBar)} />
         {openSideBar && <SideBar />}
       </div>

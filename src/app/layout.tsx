@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Epilogue } from "next/font/google";
 import "@/styles/globals.css";
-
+const epilogue = Epilogue({ subsets: ["latin"] });
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 export default function RootLayout({
   children,
 }: {
@@ -9,7 +11,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${epilogue.className} flex flex-grow flex-col`}>
+        <Header />
+        <main className="flex-1" style={{ minHeight: `calc(100vh - 80px)`}}>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
+
+
