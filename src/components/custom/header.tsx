@@ -1,10 +1,10 @@
 "use client";
 
 import { Menu, Search, Plus } from "lucide-react";
-import { SideBar } from "./sideBar";
+import { SideBar } from "../sideBar";
 import { useState } from "react";
 import Image from "next/image";
-import { ToggleCreateBlog } from "./blogs/toggleCreateBlog";
+import { ToggleCreateBlog } from "../blogs/toggleCreateBlog";
 
 export function Header() {
   const [openSideBar, setOpenSideBar] = useState(false);

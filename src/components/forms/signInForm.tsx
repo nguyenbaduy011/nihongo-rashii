@@ -13,6 +13,8 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { LoginUserAction } from "@/data/actions/auth-actions";
+import { useFormState } from "react-dom";
 
 const INITIAL_STATE = {
   data: "hello",
@@ -20,11 +22,13 @@ const INITIAL_STATE = {
 
 export function SigninForm() {
   
-  const [formState, formAction] = useFormState(INITIAL_STATE);
-  
+  const [formState, formAction] = useFormState(LoginUserAction, INITIAL_STATE);
+
+  console.log(formState, "client");
+
   return (
     <div className="w-full max-w-md">
-      <form>
+      <form action={formAction}>
         <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-3xl font-bold">Sign In</CardTitle>
@@ -36,8 +40,8 @@ export function SigninForm() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                id="identifier"
-                name="identifier"
+                id="email"
+                name="email"
                 type="text"
                 placeholder="username or email"
               />

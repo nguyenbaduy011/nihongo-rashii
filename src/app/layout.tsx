@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import "@/styles/globals.css";
 const epilogue = Epilogue({ subsets: ["latin"] });
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Header } from "@/components/custom/header";
+import { Footer } from "@/components/custom/footer";
 export default function RootLayout({
   children,
 }: {
