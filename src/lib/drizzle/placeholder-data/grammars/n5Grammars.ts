@@ -1,9 +1,4 @@
-import { db } from "@/lib/drizzle/db";
-import { grammars } from "@/lib/drizzle/schema";
-
-export async function InsertN5Grammars() {
-  return await db.insert(grammars).values([
-    {
+export const N5Grammars = [{
       id: "N5_1",
       romajiRead: "wa～desu",
       japaneseRead: "は～です",
@@ -300,5 +295,4 @@ export async function InsertN5Grammars() {
     //   meaning: "",
     //   usingWay: ``,
     // },
-  ]);
-}
+    ]

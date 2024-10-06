@@ -1,13 +1,11 @@
 import { varchar } from "drizzle-orm/mysql-core";
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
-// export const users = pgTable("users", {
-//   userName: text("username").primaryKey(),
-//   name: text("name").notNull(),
-//   age: integer("age").notNull(),
-//   phoneNumber: text("phoneNumber").notNull().unique(),
-//   email: text("email").notNull().unique(),
-// });
+export const users = pgTable("users", {
+  userName: text("username").primaryKey(),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull()
+});
 
 export const blogs = pgTable("blogs", {
   id: serial("id").primaryKey(),

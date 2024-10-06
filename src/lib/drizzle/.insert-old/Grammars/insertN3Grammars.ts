@@ -1,5 +1,5 @@
 import { db } from "@/lib/drizzle/db";
-import { grammars } from "@/lib/drizzle/schema";
+import { grammars } from "@/lib/drizzle/seed/schema";
 
 export async function InsertN3Grammars() {
   return await db.insert(grammars).values([
@@ -1261,7 +1261,7 @@ export async function InsertN3Grammars() {
       level: "N3",
       explain: ``,
       meaning: "Đã dự định/không dự định(làm gì)",
-      usingWay: ``, 
+      usingWay: ``,
     },
     {
       id: "N3_141",

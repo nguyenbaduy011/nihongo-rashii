@@ -12,6 +12,7 @@ const schemaRegister = z.object({
     .max(100, { message: "Mật khẩu phải dài hơn 6 và ngắn hơn 100 ký tự" }),
   email: z.string().email({ message: "Vui lòng nhập email hợp lệ" }),
 });
+
 export async function RegisterUserAction(prevState: any, formData: FormData) {
   const validatedFields = schemaRegister.safeParse({
     username: formData.get("username"),
@@ -40,6 +41,7 @@ if (!validatedFields.success){
 }
 
 export async function LoginUserAction(prevState: any, formData: FormData) {
+
   const fields = {
     username: formData.get("username"),
     password: formData.get("password"),

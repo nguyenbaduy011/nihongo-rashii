@@ -1,8 +1,4 @@
-import { db } from "@/lib/drizzle/db";
-import { levels } from "@/lib/drizzle/schema";
-
-export async function InsertLevels (){
-  return await db.insert(levels).values([
+export const Levels = [
   {
     id: "N5",
     levelName: "Cấp độ N5",
@@ -33,7 +29,4 @@ export async function InsertLevels (){
     content:
       "Cấp độ N1 xác định khả năng sử dụng tiếng Nhật ở mức độ cao nhất, gần với người bản ngữ. Người học cần nắm khoảng 10.000 từ vựng và 2.000 kanji. Khả năng đọc và nghe cần thiết để hiểu các tài liệu, bài nói phức tạp và trừu tượng.",
   },
-]);
-
-}
-
+];

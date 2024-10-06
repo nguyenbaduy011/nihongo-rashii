@@ -1,53 +1,17 @@
-import { getStrapiURL } from "@/lib/utils";
+import NextAuth from "next-auth";
+import { authConfig } from "../../../auth.config";
+import Credentials from "next-auth/providers/credentials";
+import { z } from "zod";
 
-interface RegisterUserProps {
-  username: string;
-  password: string;
-  email: string;
-}
-
-interface LoginUserProps {
-  identifier: string;
-  password: string;
-}
-
-const baseUrl = getStrapiURL();
-
-export async function registerUserService(userData: RegisterUserProps) {
-  const url = new URL("/api/auth/local/register", baseUrl);
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+export const { auth, signIn, signOut } = NextAuth({
+  ...authConfig,
+  providers: [
+    Credentials({
+      async authorize(credentials) {
+        const parsedCredentials = z
+          .object({ email: z.string().email(), password: z.string().min(6) })
+          .safeParse(credentials);
       },
-      body: JSON.stringify({ ...userData }),
-      cache: "no-cache",
-    });
-
-    return response.json();
-  } catch (error) {
-    console.error("Registration Service Error:", error);
-  }
-}
-
-export async function loginUserService(userData: LoginUserProps) {
-  const url = new URL("/api/auth/local", baseUrl);
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...userData }),
-      cache: "no-cache",
-    });
-
-    return response.json();
-  } catch (error) {
-    console.error("Login Service Error:", error);
-    throw error;
-  }
-}
+    }),
+  ],
+});

@@ -1,5 +1,5 @@
 import { db } from "@/lib/drizzle/db";
-import { grammarExamples, grammars } from "@/lib/drizzle/schema";
+import { grammarExamples, grammars } from "@/lib/drizzle/seed/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
@@ -21,9 +21,9 @@ export default async function GrammarPage({
     .from(grammarExamples)
     .where(eq(grammarExamples.grammarID, grammar_page.id));
 
-// const synonymousGrammar = ()
+  // const synonymousGrammar = ()
 
-// const homophoneGrammar = ()
+  // const homophoneGrammar = ()
 
   return (
     <div className="">

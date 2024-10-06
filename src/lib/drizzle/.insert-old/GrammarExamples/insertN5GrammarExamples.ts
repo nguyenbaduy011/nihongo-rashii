@@ -1,5 +1,5 @@
 import { db } from "@/lib/drizzle/db";
-import { grammarExamples } from "@/lib/drizzle/schema";
+import { grammarExamples } from "@/lib/drizzle/seed/schema";
 
 export async function InsertN5GrammarExamples() {
   return await db.insert(grammarExamples).values([

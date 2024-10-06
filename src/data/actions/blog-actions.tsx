@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/drizzle/db";
-import { blogs } from "@/lib/drizzle/schema";
+import { blogs } from "@/lib/drizzle/seed/schema";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
@@ -22,7 +22,7 @@ export async function CreateBlogAction(prevState: any, formData: FormData) {
     title: formData.get("title"),
     content: formData.get("content"),
   });
-  
+
   return {
     ...prevState,
     data: data,
