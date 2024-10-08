@@ -20,14 +20,14 @@ const INITIAL_STATE = {
   data: "hello",
 };
 
-export function SigninForm() {
+export function SignInForm() {
   
   const [formState, formAction] = useFormState(LoginUserAction, INITIAL_STATE);
 
   console.log(formState, "client");
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-md flex-1">
       <form action={formAction}>
         <Card>
           <CardHeader className="space-y-1">

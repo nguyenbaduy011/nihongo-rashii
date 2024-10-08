@@ -5,6 +5,7 @@ import { SideBar } from "../sideBar";
 import { useState } from "react";
 import Image from "next/image";
 import { ToggleCreateBlog } from "../blogs/toggleCreateBlog";
+import Link from "next/link";
 
 export function Header() {
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -14,7 +15,7 @@ export function Header() {
       <div className="flex space-x-32">
         {/* <Link href="/">日本語らしい</Link> */}
 
-        <a href="/">
+        <Link href="/">
           <Image
             src="/nihongo_rashii_white.svg"
             width={160}
@@ -22,17 +23,21 @@ export function Header() {
             className="object-contain"
             alt="Nihongo rashii"
           />
-        </a>
+        </Link>
         <div className="flex items-center space-x-16 font-medium">
-          <a href="/N5">N5</a>
-          <a href="/N4">N4</a>
-          <a href="/N3">N3</a>
-          <a href="/N2">N2</a>
-          <a href="/N1">N1</a>
+          <Link href="/N5">N5</Link>
+          <Link href="/N4">N4</Link>
+          <Link href="/N3">N3</Link>
+          <Link href="/N2">N2</Link>
+          <Link href="/N1">N1</Link>
           <a>BLOG</a>
         </div>
       </div>
       <div className="flex items-center space-x-16">
+        <Link href="/signin">Sign in</Link>
+        <form action="">
+          <button type="submit">Sign out</button>
+        </form>
         <Search className="size-5" />
         <ToggleCreateBlog />
         <Menu onClick={() => setOpenSideBar(!openSideBar)} />
