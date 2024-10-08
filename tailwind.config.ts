@@ -75,6 +75,7 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  include: ["reset.d.ts"]
 } satisfies Config
 
 export default config

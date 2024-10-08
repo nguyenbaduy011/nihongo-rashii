@@ -1,11 +1,5 @@
 import { varchar } from "drizzle-orm/mysql-core";
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
-
-export const users = pgTable("users", {
-  userName: text("username").primaryKey(),
-  email: text("email").notNull().unique(),
-  password: text("password").notNull()
-});
+import { pgTable, primaryKey, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const blogs = pgTable("blogs", {
   id: serial("id").primaryKey(),
@@ -20,7 +14,7 @@ export const blogs = pgTable("blogs", {
 export const levels = pgTable("levels", {
   id: text("id").notNull().primaryKey(),
   levelName: text("levelName").notNull(),
-  content: text("content").notNull()
+  content: text("content").notNull(),
 });
 
 export const grammars = pgTable("grammars", {
@@ -37,15 +31,15 @@ export const grammars = pgTable("grammars", {
 
 export const grammarExamples = pgTable("grammarExamples", {
   id: text("id").notNull().primaryKey(),
-  grammarID: text("grammarID").notNull().references(()=> grammars.id, { onDelete: "cascade"}),
+  grammarID: text("grammarID")
+    .notNull()
+    .references(() => grammars.id, { onDelete: "cascade" }),
   vietnameseRead: text("vietnameseRead").notNull(),
   japaneseRead: text("japaneseRead").notNull(),
   romajiRead: text("romajiRead").notNull(),
 });
 
-export const grammarHomophone = pgTable("grammarHomophone", {
-
-})
+export const grammarHomophone = pgTable("grammarHomophone", {});
 
 export const grammarSynophone = pgTable("grammarHomophone", {});
 //  export const categories = pgTable("categories", {
@@ -57,3 +51,35 @@ export const grammarSynophone = pgTable("grammarHomophone", {});
 // export const comments = pgTable("comments", {});
 // export const likes = pgTable("likes", {});
 
+export const users = pgTable("user", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name"),
+  email: text("email").unique(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+});
+
+
+export const sessions = pgTable("session", {
+  sessionToken: text("sessionToken").primaryKey(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
+});
+
+export const verificationTokens = pgTable(
+  "verificationToken",
+  {
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (verificationToken) => ({
+    compositePk: primaryKey({
+      columns: [verificationToken.identifier, verificationToken.token],
+    }),
+  }),
+);
