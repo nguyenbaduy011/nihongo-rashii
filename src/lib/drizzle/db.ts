@@ -16,3 +16,5 @@ const client = drizzle(sql, { schema });
 export const db = global.drizzleClient || client;
 
 if (process.env.NODE_ENV !== "production") global.drizzleClient = db;
+
+export default db

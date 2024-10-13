@@ -29,8 +29,9 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-    const [columnFilters, setColumnFilters] =
-      React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
   const table = useReactTable({
     data,
     columns,
@@ -43,26 +44,23 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
-      <div className="flex items-center py-4">
+    <div className="flex flex-col items-center justify-center rounded-md border">
+      <div className="py-4">
         <Input
           placeholder="Tìm ngữ pháp..."
           value={
-            (table.getColumn("romajiRead")?.getFilterValue() as string) ??
-            ""
+            (table.getColumn("romajiRead")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table
-              .getColumn("romajiRead")
-              ?.setFilterValue(event.target.value)
+            table.getColumn("romajiRead")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="flex-grow"
         />
       </div>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} >
+            <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>
@@ -86,7 +84,7 @@ export function DataTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} >
+                  <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

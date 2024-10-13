@@ -1,9 +1,25 @@
-import { ToggleLeft, Facebook, Instagram, Linkedin } from "lucide-react";
-
+import {
+  ToggleLeft,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Github,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 export function Footer() {
   return (
-    <footer className="bg-[#Ffaaaa] ">
+    <footer className="bg-[#Ffaaaa]">
       <div className="mx-auto flex h-[400px] items-center justify-center space-x-[400px]">
+        {/* <div>
+          <Image
+            src="/nihongo_rashii_white.svg"
+            width={160}
+            height={80}
+            className="object-contain"
+            alt="Nihongo rashii"
+          />
+        </div> */}
         <div className="max-w-66">
           <div className="items-center space-y-14 text-xl">
             <div className="font-medium">日本語らしい</div>
@@ -24,6 +40,9 @@ export function Footer() {
             <Facebook />
             <Instagram />
             <Linkedin />
+            <Link href="https://github.com/nguyenbaduy011/nihongo-rashii">
+              <Github />
+            </Link>
           </div>
         </div>
       </div>

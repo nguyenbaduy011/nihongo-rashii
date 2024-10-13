@@ -4,12 +4,15 @@ import { db } from "@/lib/drizzle/db";
 import { grammars, levels } from "@/lib/drizzle/seed/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-
+import { auth } from "@/lib/auth";
 export default async function DemoPage({
   params,
 }: {
   params: { N_number: string };
 }) {
+   const session = await auth();
+   console.log(session)
+   if (!session?.user) redirect("/signin")
   const N_ID = await db.query.levels.findFirst({
     where: eq(levels.id, params.N_number),
   });

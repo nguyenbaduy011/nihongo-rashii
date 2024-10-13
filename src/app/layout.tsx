@@ -4,7 +4,9 @@ import "@/styles/globals.css";
 const epilogue = Epilogue({ subsets: ["latin"] });
 import { Header } from "@/components/custom/header";
 import { Footer } from "@/components/custom/footer";
-export default function RootLayout({
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,12 +14,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${epilogue.className} flex flex-grow flex-col`}>
-        <Header />
-        <main className="flex-1" style={{ minHeight: `calc(100vh - 80px)`}}>{children}</main>
-        <Footer />
+        <SessionProvider>
+          <Header />
+          <main className="flex-1" style={{ minHeight: `calc(100vh - 80px)` }}>
+            {children}
+          </main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );
 }
-
-
